@@ -1,137 +1,131 @@
+> *One day, startup planning used to be done by founders in between pitching, pivoting, and running out of money, synchronizing once in a while using the ritual of "board meetings". That era is long gone. Planning is now entirely the domain of autonomous AI agents, guided by proven frameworks and the founder's vision. The agents claim we are now on the 10,205th iteration of the business model — in any case, no one could tell if that's right or wrong as the "canvas" has grown beyond a single whiteboard. This repo is the story of how it all began.*
+> — @karpathy style, March 2026.
+
+---
+
 # Startup OS
 
-A startup planning tool that guides founders through validated entrepreneurship frameworks — one step at a time — and produces a portable, exportable startup plan.
+Give an AI agent a structured set of startup frameworks and let it guide you through building a complete business plan — one conversation at a time. It asks questions, challenges weak answers, writes files, and updates the viewer in real time. You wake up with a lean canvas, personas, a pitch deck, and a zipped export ready to share.
 
-> Built with React, TypeScript, Vite, and Tailwind CSS v4.
-
----
-
-## What is Startup OS?
-
-Startup OS is a **local-first** planning tool. You work with an AI (Claude Code) in your terminal to fill in your startup plan through conversation. The React app in your browser acts as a live viewer — it reads the files you generate and renders them into a clean dashboard.
-
-No accounts. No cloud. Everything lives in your local `startup/` folder.
+The planning files live in `startup/`. The React app in `src/` is the viewer. The `agents.md` file is the program you're running.
 
 ---
 
-## Planning Flow
+## The idea
 
-Work through these frameworks in order — each builds on the previous:
+Point Claude Code at this repo, run a command like `/startup-vision`, and have a conversation. The agent writes structured Markdown and JSON files to `startup/`. The browser app reads those files and renders them live. When you're done, `/export-startup` packages everything into a portable zip.
 
-| Step | Command | Output |
-|------|---------|--------|
-| 1 | `/startup-vision` | `startup/startup-overview.md` |
-| 2 | `/lean-canvas` | `startup/lean-canvas/lean-canvas.md` |
-| 3 | `/golden-circle` | `startup/golden-circle/golden-circle.md` |
-| 4 | `/create-persona` | `startup/personas/personas.json` |
-| 5 | `/value-proposition` | `startup/value-proposition/value-proposition.md` |
-| 6 | `/generate-pitch-deck` | `startup/pitch-deck/pitch-deck.md` |
-| 7 | `/validate-idea` | AI critique (chat only) |
-| 8 | `/export-startup` | `startup-plan/` + `startup-plan.zip` |
-
-Use `/update-canvas` at any time to revise a section.
+You're not filling in templates. You're **programming the program** — refining `agents.md` to tune how the agent asks questions, what it pushes back on, and how it coaches you toward a sharper plan.
 
 ---
 
-## Getting Started
+## How it works
 
-### Prerequisites
+The repo has three things that matter:
 
-- [Node.js](https://nodejs.org/) v18+
-- [Claude Code](https://claude.ai/code) CLI
-
-### Installation
-
-```bash
-git clone https://github.com/josepramod39-sketch/Startup-OS.git
-cd Startup-OS
-npm install
+```
+agents.md      — the agent's instructions. You edit this to tune coaching behavior.
+startup/       — your startup plan files. The agent writes here, you never touch this.
+src/           — the React viewer. Reads startup/ and renders everything live.
 ```
 
-### Run the viewer app
+The metric is **clarity** — a sharp problem statement, a specific customer segment, a defensible unfair advantage. The agent challenges vague answers and won't let you get away with "our market is everyone."
+
+---
+
+## Quick start
+
+**Requirements:** Node.js v18+, [Claude Code](https://claude.ai/code)
 
 ```bash
+# 1. Clone the repo
+git clone https://github.com/josepramod39-sketch/Startup-OS.git
+cd Startup-OS
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the viewer
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open [http://localhost:5173](http://localhost:5173) — you'll see an empty dashboard prompting you to start.
 
-### Start planning
+---
 
-Open a new terminal in the same folder and run Claude Code:
+## Running the agent
+
+Open Claude Code in this repo:
 
 ```bash
 claude
 ```
 
-Then type your first command:
+Then kick off your first framework:
 
 ```
 /startup-vision
 ```
 
-Claude will guide you through the rest conversationally. As you complete each framework, the browser app updates automatically.
+The agent will ask about your idea, push back on vague answers, and write `startup/startup-overview.md` when it has enough. The browser updates immediately.
+
+Work through the full sequence:
+
+| Command | What it produces |
+|---------|-----------------|
+| `/startup-vision` | Startup name, problem, market, stage |
+| `/lean-canvas` | 9-section business model map |
+| `/golden-circle` | Why / How / What + go-to-market strategy |
+| `/create-persona` | Target customer profile (run multiple times) |
+| `/value-proposition` | Customer needs mapped to your product |
+| `/generate-pitch-deck` | 10-slide pitch deck, auto-synthesized |
+| `/validate-idea` | AI critique — gaps, risks, suggestions |
+| `/export-startup` | Portable zip of everything |
+
+Use `/update-canvas` at any point to revise a section.
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 Startup-OS/
-├── src/                        # React viewer app
-│   ├── components/             # Shared UI components
-│   ├── lib/                    # File loaders (read startup/ files)
-│   ├── pages/                  # One page per framework
-│   └── types/                  # TypeScript types
-│
-├── startup/                    # Your startup plan (generated by commands)
-│   ├── startup-overview.md
-│   ├── lean-canvas/
-│   ├── golden-circle/
-│   ├── personas/
-│   ├── value-proposition/
-│   └── pitch-deck/
-│
-├── startup-plan/               # Export package (generated by /export-startup)
-│   ├── README.md
-│   ├── executive-summary.md
-│   ├── lean-canvas.md
-│   ├── golden-circle.md
-│   ├── value-proposition.md
-│   ├── personas/
-│   └── pitch-deck/
-│
-├── agents.md                   # Agent directives for Claude Code
-└── CLAUDE.md                   # Claude Code project instructions
+├── agents.md              — agent instructions (edit this to tune behavior)
+├── src/
+│   ├── pages/             — one page per framework (Dashboard, Lean Canvas, etc.)
+│   ├── lib/               — file loaders (parse startup/ into typed objects)
+│   ├── components/        — shared UI (AppLayout, EmptyState, StageNav)
+│   └── types/             — TypeScript types for all startup data
+├── startup/               — generated by agent commands (your plan lives here)
+└── startup-plan/          — export package (generated by /export-startup)
 ```
 
 ---
 
-## App Pages
+## Design choices
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | Dashboard | Overview of all stages and completion status |
-| `/lean-canvas` | Lean Canvas | 9-section business model grid |
-| `/golden-circle` | Golden Circle | Why / How / What + GTM strategy |
-| `/personas` | Personas | Target customer card grid |
-| `/personas/:id` | Persona Detail | Full persona profile |
-| `/value-proposition` | Value Proposition | Customer profile ↔ value map fit |
-| `/pitch-deck` | Pitch Deck | 10-slide deck viewer with navigation |
-| `/export` | Export | File checklist + download as `.zip` |
+**Single folder to write.** The agent only writes to `startup/`. This keeps diffs readable and makes it easy to version your plan in git.
+
+**Conversation-first.** The agent asks 1–2 questions at a time and waits for answers before writing anything. No assumptions, no pre-filled templates.
+
+**Local-first.** No accounts, no cloud, no database. Everything is Markdown and JSON in a folder on your machine. The viewer is a static React app that reads files at build time.
+
+**Fixed file formats.** The React loader uses regex to parse each file. Formats are strict so the viewer always renders correctly. See `agents.md` for the full spec.
+
+**Export is in-browser.** `/export-startup` (and the Export page) uses JSZip to assemble `startup-plan.zip` entirely in the browser — no server needed.
 
 ---
 
-## Tech Stack
+## Tech stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | React 19 |
+| | |
+|--|--|
+| Viewer framework | React 19 |
 | Language | TypeScript 5.9 |
 | Build tool | Vite 7 |
 | Styling | Tailwind CSS v4 |
 | Routing | React Router v7 |
-| UI Components | Radix UI |
+| UI primitives | Radix UI |
 | Icons | Lucide React |
 | Export | JSZip |
 
@@ -139,42 +133,29 @@ Startup-OS/
 
 ## Contributing
 
-Contributions are welcome. Here's how to get started:
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Make changes and verify: `npm run build && npm run lint`
+4. Open a pull request
 
-1. **Fork** the repository
-2. **Clone** your fork locally
-3. Create a new branch: `git checkout -b feature/your-feature-name`
-4. Make your changes
-5. Run the type checker: `npm run build`
-6. Run the linter: `npm run lint`
-7. **Commit** your changes with a clear message
-8. **Push** and open a **Pull Request**
+**Good areas to contribute:**
 
-### Areas open for contribution
-
-- New framework pages (e.g. competitor analysis, financial projections)
-- Improved markdown parsing in loaders
+- New framework pages (competitor map, financial model, OKRs)
+- Improved file format parsers in `src/lib/`
+- PDF or Notion export
 - Mobile layout improvements
-- Accessibility (ARIA, keyboard navigation)
-- Dark mode refinements
-- Additional export formats (PDF, Notion)
+- Accessibility (ARIA, keyboard nav)
+- Broader platform support
 
-### Code style
+**Code conventions:**
 
-- TypeScript strict mode — no `any`
-- Tailwind CSS v4 utility classes only — no custom CSS files
-- Functional components only — no class components
-- Keep loaders in `src/lib/` and pages in `src/pages/`
-- Follow existing naming conventions
-
----
-
-## File Format Reference
-
-The React app parses files from `startup/` using regex. Formats must match exactly for the viewer to work. See [`agents.md`](./agents.md) for the full specification of each file format.
+- No `any` — TypeScript strict mode throughout
+- Tailwind v4 utilities only — no custom CSS
+- Functional components, no class components
+- Loaders go in `src/lib/`, pages in `src/pages/`
 
 ---
 
 ## License
 
-MIT — free to use, fork, and build on.
+MIT
