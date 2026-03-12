@@ -1,7 +1,3 @@
-> *One day, startup planning used to be done by founders in between pitching, pivoting, and running out of money, synchronizing once in a while using the ritual of "board meetings". That era is long gone. Planning is now entirely the domain of autonomous AI agents, guided by proven frameworks and the founder's vision. The agents claim we are now on the 10,205th iteration of the business model — in any case, no one could tell if that's right or wrong as the "canvas" has grown beyond a single whiteboard. This repo is the story of how it all began.*
-
----
-
 # Startup OS
 
 Give an AI agent a structured set of startup frameworks and let it guide you through building a complete business plan — one conversation at a time. It asks questions, challenges weak answers, writes files, and updates the viewer in real time. You wake up with a lean canvas, personas, a pitch deck, and a zipped export ready to share.
