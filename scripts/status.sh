@@ -18,12 +18,10 @@ next_step="$(yaml_get "next_step")"
 completed="$(yaml_get "completed")"
 total="$(yaml_get "total")"
 
-# File presence — grep for "present: true/false" under each block
+# File presence — find block header then check next 5 lines for "present: true"
 file_present() {
   local block="$1"
-  awk "/^  ${block}:/,/^  [a-z]/" "$INDEX_FILE" \
-    | grep -m1 "present:" \
-    | grep -q "true" && echo "true" || echo "false"
+  grep -A5 "^  ${block}:" "$INDEX_FILE" | grep -q "present: true" && echo "true" || echo "false"
 }
 
 persona_count="$(yaml_get "count")"

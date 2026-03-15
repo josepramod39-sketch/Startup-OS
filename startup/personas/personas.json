@@ -1,0 +1,82 @@
+[
+  {
+    "id": "maya-patel",
+    "name": "Maya Patel",
+    "age": 32,
+    "occupation": "Senior Product Manager",
+    "location": "Austin, TX (remote team across 4 time zones)",
+    "income": "$135,000",
+    "techSavviness": "High",
+    "description": "Maya leads product at a 60-person Series B fintech startup. Her team of 4 PMs and 18 engineers is fully remote across the US and Eastern Europe. She spends her mornings in a wall of Slack notifications and her afternoons in status update meetings she knows she could replace with a better async system.",
+    "goals": [
+      "Ship product faster without sacrificing team alignment",
+      "Replace weekly status meetings with a system that keeps everyone informed asynchronously",
+      "Have real-time visibility into what is blocked across squads without scheduling a check-in",
+      "Build a culture where engineers feel trusted and autonomous, not micromanaged"
+    ],
+    "painPoints": [
+      "Decisions made in Slack threads are invisible to anyone not in the channel at the time — context is constantly lost",
+      "Daily standups with distributed engineers mean someone is always joining at 7am or 9pm",
+      "Linear and Notion are both in use but there is no single view of what is actually in flight",
+      "She spends 90 minutes every Friday manually compiling a status update for the VP of Engineering"
+    ],
+    "motivations": [
+      "Being recognised as the PM who unlocked her team's velocity, not the one who added more process",
+      "Building products that engineers respect and enjoy using",
+      "Getting home in time for dinner without feeling like she missed something critical"
+    ],
+    "preferredChannels": [
+      "Slack (reluctantly — it is where the team already is)",
+      "Linear for task management",
+      "Twitter and LinkedIn for discovering new tools and remote work content",
+      "Word of mouth from trusted peers in her PM community"
+    ],
+    "behaviors": [
+      "Evaluates new tools by trialling them solo before proposing to the team",
+      "Reads async/remote work content from leaders at GitLab, Basecamp, and Doist",
+      "Participates in 2–3 PM Slack communities where she asks for tool recommendations",
+      "Cancels recurring meetings regularly — her calendar is a constant battle against status updates"
+    ],
+    "quote": "I don't need another place to write things down. I need the things I already wrote to actually reach the right people without me having to manually route them."
+  },
+  {
+    "id": "jordan-kim",
+    "name": "Jordan Kim",
+    "age": 38,
+    "occupation": "VP of Engineering",
+    "location": "Brooklyn, NY (leads 35-person fully distributed team)",
+    "income": "$210,000",
+    "techSavviness": "Very High",
+    "description": "Jordan runs engineering at a 120-person Series B SaaS company. She inherited a culture of too many meetings from the previous CTO and is on a mission to reduce coordination overhead without losing alignment. She has budget authority for tooling decisions and signs contracts under $30k without escalation.",
+    "goals": [
+      "Cut the number of synchronous meetings by 50% without losing team cohesion",
+      "Have a clear view of team health, morale, and blockers across 6 squads without being in every standup",
+      "Reduce onboarding time for new engineers from 3 weeks to 1 week by making context discoverable",
+      "Retain senior engineers who are burning out from coordination overhead"
+    ],
+    "painPoints": [
+      "She attends 8–12 standups per week across squads just to know what is blocked — this is not scalable",
+      "When an engineer leaves, their context leaves with them — there is no persistent decision log",
+      "The board asks for engineering velocity metrics and she has to manually assemble them from Linear and Jira",
+      "Remote engineers in Europe are excluded from important decisions made in ad-hoc Slack calls at 2pm EST"
+    ],
+    "motivations": [
+      "Being the engineering leader who demonstrably improved team output without burning people out",
+      "Building systems and culture that outlast her tenure",
+      "Spending her time on architecture and hiring, not coordination and status updates"
+    ],
+    "preferredChannels": [
+      "Direct outreach from respected peers or founders she already knows",
+      "Engineering leadership communities (Rands Leadership Slack, CTO Craft)",
+      "Conference talks and case studies from companies like GitLab and Basecamp",
+      "LinkedIn for professional content — she reads but rarely posts"
+    ],
+    "behaviors": [
+      "Evaluates tools based on integration quality first — will not adopt anything that creates a new silo",
+      "Runs a structured 2-week pilot with a single squad before rolling out company-wide",
+      "Asks her team for feedback before making a tooling decision — does not impose tools top-down",
+      "Reads engineering culture blogs from Will Larson, Camille Fournier, and Lara Hogan weekly"
+    ],
+    "quote": "I'm not paying for another dashboard I have to manually feed. If it doesn't integrate with Linear and pull its own data, I'm not interested."
+  }
+]
